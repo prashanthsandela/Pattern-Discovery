@@ -180,10 +180,11 @@ public abstract class MergeAlg implements Serializable {
 
         double n1 = nodeI.getNumReached();
         double n2 = nodeJ.getNumReached();
+        double f1 = nodeI.getNumAccepted();
+        double f2 = nodeJ.getNumAccepted();
 
         // termination test (n,f(#))
-        if (isDifferent(n1, nodeI.getNumAccepted(),
-                        n2, nodeJ.getNumAccepted(), gama))
+        if (isDifferent(n1, f1, n2, f2, gama))
             return false;
         
         // symbol numOut test (n,f(a))

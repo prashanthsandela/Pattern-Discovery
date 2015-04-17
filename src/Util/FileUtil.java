@@ -828,12 +828,10 @@ public class FileUtil
             		int size = tempStr.length();
             		lineNumber++;
             		
-//            		if(lineNumber % 10000 == 0)
-//            			System.out.println(lineNumber);
-            		
             		for(int i = 0; i < size; i++, j++)
                 	{
             			tempSB.append(tempStr.charAt(i));
+            			int mid_nodes_count = 0;
                 		if( j % 3 == 0)
                 		{
                 			
@@ -844,8 +842,11 @@ public class FileUtil
                     		{
                     			if(s.equalsIgnoreCase("TGA") || s.equalsIgnoreCase("TAG") || s.equalsIgnoreCase("TAA"))
                     			{
-                    				streamSB.append(s + " ");
+//                    				streamSB.append(s + " ");
+                    				if(mid_nodes_count == 0)
+                    					streamSB.append(" ");
                     				streamSB.append("\r\n");
+                    				mid_nodes_count++;
                     				isStart = false;
                     			} else 
                     			{
@@ -854,7 +855,8 @@ public class FileUtil
                     			}
                     		} else if(s.equalsIgnoreCase("ATG")) 
                     		{
-                    			streamSB.append(s + " ");
+//                    			streamSB.append(s + " ");
+                    			mid_nodes_count = 0;
                     			isStart = true;
                     		} else 
                     		{
@@ -866,38 +868,6 @@ public class FileUtil
                 	}
             		
             	}
-//           
-//            	// Chop into 3 characters
-//            	
-//            	String tempStr = streamSB.toString().trim();
-//            	streamSB = new StringBuilder();
-//            	int size = tempStr.length();
-//            	
-            						
-            	//Split into start and end Strings
-//            	boolean isStart = false;
-//            	streamSB = new StringBuilder();
-//            	for(String s: chopped)
-//            	{
-//            		if(isStart)
-//            		{
-//            			if(s.equalsIgnoreCase("TGA") || s.equalsIgnoreCase("TAG") || s.equalsIgnoreCase("TAA"))
-//            			{
-//            				streamSB.append("\r\n");
-//            				isStart = false;
-//            			} else 
-//            			{
-//            				streamSB.append(s + " ");
-//            				isStart = true;
-//            			}
-//            		} else if(s.equalsIgnoreCase("ATG")) 
-//            		{
-//            			isStart = true;
-//            		} else 
-//            		{
-//            			isStart = false;
-//            		}
-//            	}
             	
             } 
             else
@@ -922,7 +892,7 @@ public class FileUtil
             System.err.println(ex.getMessage());
         }
 
-        return streamSB.toString().trim();
+        return streamSB.toString();
     } //method
     
 //    public static String fileToString(String inFN)

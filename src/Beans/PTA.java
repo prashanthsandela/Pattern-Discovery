@@ -207,9 +207,9 @@ public class PTA implements Serializable {
 
         PTA pta = tree.clone();
 
-      //pta.insertString("0 1", emptyStringSymbol);
+      pta.insertString("0 1", emptyStringSymbol);
         System.out.println("the tree:\n" + tree.toString());
-      //  System.out.println("the tree2:\n" + pta.toString());
+//        System.out.println("the tree2:\n" + pta.toString());
 
     } //test method
 
@@ -219,18 +219,27 @@ public class PTA implements Serializable {
      * @param depth - the depth of the tree
      * @param sb  - the string builder which will contains the final string
      */
-    private void preOrderTraverse(Node node, int depth, StringBuilder sb) {
+    private void preOrderTraverse(Node node, int depth, StringBuilder sb, int node_id) {
 
         sb.append(StringUtil.space4Creator(depth));
 
         if (node == null) {
             sb.append("null\n");
         } else {
-            sb.append(node.toStringForPTA()).append("\n");
+            sb.append(node.toStringForPTA());
 
             for (Node child : node.getChildren().values()) {
-                preOrderTraverse(child, depth + 1, sb);
+            	if(node_id != child.getNodeID()){
+            		sb.append("\n");
+            		preOrderTraverse(child, depth + 1, sb, child.getNodeID());
+            	}
+            	else
+            	{
+            		sb.append(StringUtil.space4Creator(depth));
+            		sb.append("::::Rec_Over_Node: " + child.getNodeID() + "\tSymbol: " + child.getSymbol() + "\t Key: " +"\n");
+            	}
             } //for
+            sb.append("\n");
         }
 
     } //mehtod
@@ -276,14 +285,14 @@ public class PTA implements Serializable {
     @Override
     public String toString() {
 
-//       StringBuilder sb = new StringBuilder("\n*****   PTA  ******\n");
-//       sb.append("Total # of nodes = ").append(getTotNodes()).append("\n");
+       StringBuilder sb = new StringBuilder("\n*****   PTA  ******\n");
+       sb.append("Total # of nodes = ").append(getTotNodes()).append("\n");
+
+     //  postOrderTreeTraverse(sb, root);
 //
-//     //  postOrderTreeTraverse(sb, root);
-////
-//      preOrderTraverse(this.root, 0, sb);
-//        return sb.toString();
-    	return null;
+      preOrderTraverse(this.root, 0, sb, 1);
+        return sb.toString();
+//    	return null;
 
     } //method
 

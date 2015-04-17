@@ -15,8 +15,12 @@ import java.net.URLConnection;
 public class GetDnaData {
 	public static void main(String args[]) throws IOException
 	{
-		String URL = "http://www.ncbi.nlm.nih.gov/portal/loader/pload.cgi?curl=http%3A%2F%2Fwww.ncbi.nlm.nih.gov%2Fsviewer%2Fviewer.cgi%3Fval%3D82583714%26db%3Dnuccore%26dopt%3Dfasta%26extrafeat%3D0%26fmt_mask%3D0%26retmode%3Dhtml%26withmarkup%3Don%26log%24%3Dseqview&dsrc=D&oid=3199742587&pid=";
-		String outputFile = ".\\DNA_Data\\dna_data.txt";
+		// Human DNA
+//		String URL = "http://www.ncbi.nlm.nih.gov/portal/loader/pload.cgi?curl=http%3A%2F%2Fwww.ncbi.nlm.nih.gov%2Fsviewer%2Fviewer.cgi%3Fval%3D82583714%26db%3Dnuccore%26dopt%3Dfasta%26extrafeat%3D0%26fmt_mask%3D0%26retmode%3Dhtml%26withmarkup%3Don%26log%24%3Dseqview&dsrc=D&oid=3199742587&pid=";
+		
+		//Chimpanzee DNA
+		String URL ="http://www.ncbi.nlm.nih.gov/portal/loader/pload.cgi?curl=http%3A%2F%2Fwww.ncbi.nlm.nih.gov%2Fsviewer%2Fviewer.cgi%3Fval%3D49619244%26db%3Dnuccore%26dopt%3Dfasta%26extrafeat%3D0%26fmt_mask%3D0%26retmode%3Dhtml%26withmarkup%3Don%26log%24%3Dseqview&dsrc=B&oid=2278541163&pid=";
+		String outputFile = ".\\DNA_Data\\chimpanzee.txt";
 		StringBuilder data = new StringBuilder();
 		//Create a new file
 		General.createFile(outputFile, "", false);
