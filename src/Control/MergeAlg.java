@@ -3,6 +3,7 @@ package Control;
 import Beans.Node;
 import Beans.PTA;
 import Util.GenUtil;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -178,13 +179,12 @@ public abstract class MergeAlg implements Serializable {
      */
     static boolean isCompatible(Node nodeI, Node nodeJ, double gama) {
 
-        double n1 = nodeI.getNumReached();
+    	double n1 = nodeI.getNumReached();
         double n2 = nodeJ.getNumReached();
-        double f1 = nodeI.getNumAccepted();
-        double f2 = nodeJ.getNumAccepted();
 
         // termination test (n,f(#))
-        if (isDifferent(n1, f1, n2, f2, gama))
+        if (isDifferent(n1, nodeI.getNumAccepted(),
+                        n2, nodeJ.getNumAccepted(), gama))
             return false;
         
         // symbol numOut test (n,f(a))

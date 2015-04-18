@@ -2,7 +2,6 @@
 package Beans;
 
 import Util.Tokenizer;
-import Util.GenUtil;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;

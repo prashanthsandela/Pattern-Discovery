@@ -1,5 +1,6 @@
 package Beans;
 
+import Control.AlgAlergiaBFS;
 import Control.Config;
 import Util.StringUtil;
 
@@ -24,6 +25,7 @@ public class PTA implements Serializable {
      * hold the root of this tree.
      */
     private Node root;
+    private int start_node_id = 1;
 
     /**
      * hold the node id.
@@ -40,7 +42,7 @@ public class PTA implements Serializable {
     public PTA(ArrayList<String> symbolsStrArr, String emptyStringSymbol) {
 
         root = new Node();
-        nodeID = 1;
+        nodeID = start_node_id;
         createPTA(symbolsStrArr, emptyStringSymbol);
 
     } //constructor
@@ -116,8 +118,7 @@ public class PTA implements Serializable {
      */
     private void insertString(String symbolsStr, String emptyStringSymbol) {
 
-    	String[] symbolArr = null;
-    	symbolArr = symbolsStr.split("\\p{javaWhitespace}+");
+    	 String[] symbolArr = symbolsStr.split("\\p{javaWhitespace}+");
         Node curNode = root; //insertion always starts from the root
 
         //empty string condition
@@ -207,8 +208,13 @@ public class PTA implements Serializable {
 
         PTA pta = tree.clone();
 
-      pta.insertString("0 1", emptyStringSymbol);
+        pta.insertString("0 1", emptyStringSymbol);
         System.out.println("the tree:\n" + tree.toString());
+        
+        //Apply AlergiaBFS
+        AlgAlergiaBFS bfs = new AlgAlergiaBFS();
+        bfs.applyAlgorithm(pta, 0.1);
+        
 //        System.out.println("the tree2:\n" + pta.toString());
 
     } //test method
@@ -290,7 +296,7 @@ public class PTA implements Serializable {
 
      //  postOrderTreeTraverse(sb, root);
 //
-      preOrderTraverse(this.root, 0, sb, 1);
+      preOrderTraverse(this.root, 0, sb, start_node_id);
         return sb.toString();
 //    	return null;
 

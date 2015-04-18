@@ -11,6 +11,7 @@ import java.util.LinkedList;
  * -------- ----------------- ---- ---------------------------------------------
  * 10/28/11 Nikhil Kalantri  1.0  born.
  */
+@SuppressWarnings("serial")
 public class AYQueue<E> implements Serializable {
 
 // ........................ D A T A   F I E L D S ............................//
@@ -77,7 +78,8 @@ public class AYQueue<E> implements Serializable {
 
     } //method
 
-    private static void testtoString() {
+    @SuppressWarnings("unused")
+	private static void testtoString() {
 
 //        AYQueue<Node> q = new AYQueue();
 //
