@@ -48,7 +48,8 @@ public abstract class MergeAlg implements Serializable {
 
         double d1 = Math.abs(f1 / n1 - f2 / n2);
         double d2 = gama * (1.0 / Math.sqrt(n1) + 1.0 / Math.sqrt(n2));
-        return d1 > d2;
+//        return d1 > d2;
+        return true;
 
     } //method
 
