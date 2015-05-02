@@ -448,13 +448,14 @@ public class Node implements Serializable {
  */
 	public String toString()
 	{
-		StringBuilder sb = new StringBuilder();
-		sb.append("Node ID: " + this.nodeID + "\n");
-		sb.append("Symbol: " + this.symbol + "\n");
-		sb.append("Number Reached: " + this.numReached + "\n");
-		sb.append("Number Accepted: " + this.numAccepted + "\n");
-		
-		return sb.toString();
+//		StringBuilder sb = new StringBuilder();
+//		sb.append("Node ID: " + this.nodeID + "\n");
+//		sb.append("Symbol: " + this.symbol + "\n");
+//		sb.append("Number Reached: " + this.numReached + "\n");
+//		sb.append("Number Accepted: " + this.numAccepted + "\n");
+//		
+//		return sb.toString();
+		return "";
 		
 	}
 	

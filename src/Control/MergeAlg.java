@@ -48,8 +48,8 @@ public abstract class MergeAlg implements Serializable {
 
         double d1 = Math.abs(f1 / n1 - f2 / n2);
         double d2 = gama * (1.0 / Math.sqrt(n1) + 1.0 / Math.sqrt(n2));
-//        return d1 > d2;
-        return true;
+        return d1 > d2;
+//        return true;
 
     } //method
 
@@ -61,6 +61,13 @@ public abstract class MergeAlg implements Serializable {
      */
     private static void fold(Node nodeI, Node nodeJ) {
 
+//    	System.out.println("\n\n**********************"
+//    			+ "Before Folding Nodes"
+//    			+ "**********************\n"
+//    			+ "From: \n" + nodeI.toString() + "\n"
+//    			+ "To: \n" + nodeJ.toString() + "\n"
+//    			+ "********************************************\n");
+    	
         // update reached and accepted frequency on nodeI
         nodeI.addNumReached(nodeJ.getNumReached());
         nodeI.addNumAccepted(nodeJ.getNumAccepted());
@@ -86,6 +93,12 @@ public abstract class MergeAlg implements Serializable {
                 
             } //else
 
+//            System.out.println("\n\n**********************"
+//        			+ "After Folding Nodes"
+//        			+ "**********************\n"
+//        			+ "Node I: \n" + nodeI.toString() + "\n"
+//        			+ "********************************************\n");
+            
         } //for
 
     } //method
@@ -101,6 +114,7 @@ public abstract class MergeAlg implements Serializable {
         Node jParent = nodeJ.getParent();
         int  jSymbol = nodeJ.getSymbol();
 
+//        System.out.println("Creating New Nodes for: " + jParent.toString());
         jParent.setChild(jSymbol, nodeI);
 
     } //method
@@ -128,12 +142,28 @@ public abstract class MergeAlg implements Serializable {
             Node iChild = iChildren.get(jKey);
             Node jChild = jChildren.get(jKey);
             
-            if (iChild != null) { //iNode contains the jKey
-                //recursively determinize the childern
+            if (iChild != null) { // iNode contains the jKey
+                // recursively determinize the childern
+//            	System.out.println("\n\n**********************"
+//            			+ "Start Determinize"
+//            			+ "**********************\n"
+//            			+ "From: \n" + iChild.toString() + "\n"
+//            			+ "To: \n" + jChild.toString() + "\n"
+//            			+ "********************************************\n");
                 determinize(iChild, jChild);
+//                System.out.println("\n\n**********************"
+//            			+ "End Determinize"
+//            			+ "**********************\n"
+//            			+ "From: \n" + iChild.toString() + "\n"
+//            			+ "To: \n" + jChild.toString() + "\n"
+//            			+ "********************************************\n");
+//                System.out.println("\n\nEnd  of Det Merge for: " + iChild.toString() + " **** " + jChild.toString());
 
             } else { //added per my algorithm modification
                 //add the jChild to iNode
+//            	System.out.println("\n\n**********************\n"
+//            			+ "Creating new Parent for " + jChild.toString() + "**** "
+//            			+ "\nTo node" + nodeI.toString() );
                 iChildren.put(jKey, jChild);
                 jChild.setParent(nodeI);
 

@@ -291,14 +291,14 @@ public class PTA implements Serializable {
     @Override
     public String toString() {
 
-       StringBuilder sb = new StringBuilder("\n*****   PTA  ******\n");
-       sb.append("Total # of nodes = ").append(getTotNodes()).append("\n");
-
-     //  postOrderTreeTraverse(sb, root);
+//       StringBuilder sb = new StringBuilder("\n*****   PTA  ******\n");
+//       sb.append("Total # of nodes = ").append(getTotNodes()).append("\n");
 //
-      preOrderTraverse(this.root, 0, sb, start_node_id);
-        return sb.toString();
-//    	return null;
+//     //  postOrderTreeTraverse(sb, root);
+////
+//      preOrderTraverse(this.root, 0, sb, start_node_id);
+//        return sb.toString();
+    	return null;
 
     } //method
 
